@@ -25,18 +25,15 @@ public class DocumentScanner extends CordovaPlugin {
 
 	private void process(JSONArray options, CallbackContext callbackContext) throws JSONException {
         Log.i("DOC_LOG","process() - START");
-        JSONArray response= new JSONArray();
-        JSONObject jo = new JSONObject();
-
+        JSONObject response = new JSONObject();
         JSONObject option=(JSONObject)options.get(0);
+
  		if ( option.has("source") ) {
-	        jo.put("status", "OK");
-	        response.put(jo);
+	        response.put("status", "OK");
 		    callbackContext.success(response);
 		} else {
-	        jo.put("status", "ERROR");
-//	        jo.put("message", "Their was an error processing your request");
-	        response.put(jo);
+	        response.put("status", "ERROR");
+	        response.put("message", "Their was an error processing your request");
 		    callbackContext.error(response);
 		}		
 	}
