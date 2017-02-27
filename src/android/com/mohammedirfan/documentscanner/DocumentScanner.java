@@ -32,12 +32,12 @@ public class DocumentScanner extends CordovaPlugin {
  		if ( option.has("source") ) {
 	        jo.put("status", "OK");
 	        response.put(jo);
-		    callbackContext.success(response.toString());
+		    callbackContext.success(response);
 		} else {
 	        jo.put("status", "ERROR");
 //	        jo.put("message", "Their was an error processing your request");
 	        response.put(jo);
-		    callbackContext.error(response.toString());
+		    callbackContext.error(response);
 		}		
 	}
 }
