@@ -31,11 +31,11 @@
   <!-- android -->
   <platform name="android">
 
-    <source-file src="src/android/com/mohammedirfan/documentscanner/DocumentScanner.java" target-dir="src/com/mohammedirfan655/documentscanner"/>
+    <source-file src="src/android/com/mohammedirfan/documentscanner/DocumentScanner.java" target-dir="src/com/mohammedirfan/documentscanner"/>
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="DocumentScanner">
-        <param name="android-package" value="com.mohammedirfan655.documentscanner.DocumentScanner" />
+        <param name="android-package" value="com.mohammedirfan.documentscanner.DocumentScanner" />
       </feature>
     </config-file>
 
