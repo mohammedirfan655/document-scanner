@@ -28,15 +28,15 @@ public class DocumentScanner extends CordovaPlugin {
         JSONObject jo = new JSONObject();
 
         JSONObject option=(JSONObject)options.get(0);
- 		if ( option.get("source").length > 0 ) {
+ 		if ( option.get("source").toString().length() > 0 ) {
 	        jo.put("status", "OK");
 	        response.put(jo);
-		    callbackContext.success(response);
+		    callbackContext.success(response.toString());
 		} else {
 	        jo.put("status", "ERROR");
 	        jo.put("message", "Their was an error processing your request");
 	        response.put(jo);
-		    callbackContext.error(response);
+		    callbackContext.error(response.toString());
 		}		
 	}
 }
