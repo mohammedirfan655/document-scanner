@@ -22,7 +22,7 @@ public class DocumentScanner extends CordovaPlugin {
 		return false;
 	}
 
-	private void process(JSONArray options, CallbackContext callbackContext) {
+	private void process(JSONArray options, CallbackContext callbackContext) throws JSONException {
         Log.i("KIRANCSE","process() - START");
         JSONArray response= new JSONArray();
         JSONObject jo = new JSONObject();
