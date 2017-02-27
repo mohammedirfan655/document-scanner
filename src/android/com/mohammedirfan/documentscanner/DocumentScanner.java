@@ -1,4 +1,4 @@
-package com.mohammedirfan655.documentscanner;
+package com.mohammedirfan.documentscanner;
 
 import android.os.*;
 import org.apache.cordova.*;
@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.util.Log;
 
-public class HelloWorld extends CordovaPlugin {
+public class DocumentScanner extends CordovaPlugin {
 
 	private static final String ACTION_SHOW_EVENT = "process";
 
@@ -26,7 +26,9 @@ public class HelloWorld extends CordovaPlugin {
         Log.i("KIRANCSE","process() - START");
         JSONArray response= new JSONArray();
         JSONObject jo = new JSONObject();
- 		if (message.equals("Test") == true) {
+
+        JSONObject option=(JSONObject)options.get(0);
+ 		if ( option.get("source").length > 0 ) {
 	        jo.put("status", "OK");
 	        response.put(jo);
 		    callbackContext.success(response);
