@@ -14,7 +14,8 @@ public class DocumentScanner extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray options, final CallbackContext callbackContext) throws JSONException {
-        Log.i("KIRANCSE","execute() - START");
+        Log.i("DOC_LOG","execute() - START");
+        Log.i("DOC_LOG","execute() - Options received = "+options.toString());
 		if ( action.equals(ACTION_SHOW_EVENT) ) {
 			this.process(options,callbackContext);
 			return true;
@@ -23,18 +24,18 @@ public class DocumentScanner extends CordovaPlugin {
 	}
 
 	private void process(JSONArray options, CallbackContext callbackContext) throws JSONException {
-        Log.i("KIRANCSE","process() - START");
+        Log.i("DOC_LOG","process() - START");
         JSONArray response= new JSONArray();
         JSONObject jo = new JSONObject();
 
         JSONObject option=(JSONObject)options.get(0);
- 		if ( option.get("source").toString().length() > 0 ) {
+ 		if ( option.has("source") ) {
 	        jo.put("status", "OK");
 	        response.put(jo);
 		    callbackContext.success(response.toString());
 		} else {
 	        jo.put("status", "ERROR");
-	        jo.put("message", "Their was an error processing your request");
+//	        jo.put("message", "Their was an error processing your request");
 	        response.put(jo);
 		    callbackContext.error(response.toString());
 		}		
