@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-document-scanner"
-        version="1.0">
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				id="cordova-plugin-document-scanner"
+				version="1.0">
 
-  <engines>
-    <engine name="cordova" version=">=3.0.0"/>
-  </engines>
+	<engines>
+		<engine name="cordova" version=">=3.0.0"/>
+	</engines>
 
-  <name>Document Scanner</name>
+	<name>Document Scanner</name>
 
-  <description>
-    Plugin to provide a javascript interface to a native document scanner API functionality
-  </description>
+	<description>
+		Plugin to provide a javascript interface to a native document scanner API functionality
+	</description>
 
-  <author>Mohammed Irfan</author>
+	<author>Mohammed Irfan</author>
 
-  <keywords>Document Scanner, Scanner, Document, Document Capture, Document Processing, Process Documents</keywords>
+	<keywords>Document Scanner, Scanner, Document, Document Capture, Document Processing, Process Documents</keywords>
 
-  <license>Apache 2.0 License</license>
+	<license>Apache 2.0 License</license>
 
-  <repo>https://github.com/mohammedirfan655/document-scanner.git</repo>
-  <issue>https://github.com/mohammedirfan655/document-scanner/issues</issue>
+	<repo>https://github.com/mohammedirfan655/document-scanner.git</repo>
+	<issue>https://github.com/mohammedirfan655/document-scanner/issues</issue>
 
-  <js-module src="www/DocumentScanner.js" name="DocumentScanner">
-    <clobbers target="window.plugins.documentscanner" />
-    <clobbers target="window.plugins.scanner" />
-  </js-module>
+	<js-module src="www/DocumentScanner.js" name="DocumentScanner">
+		<clobbers target="window.plugins.documentscanner" />
+		<clobbers target="window.plugins.scanner" />
+	</js-module>
 
-  <!-- android -->
-  <platform name="android">
+	<!-- android -->
+	<platform name="android">
 
-    <source-file src="src/android/com/mohammedirfan/documentscanner/DocumentScanner.java" target-dir="src/com/mohammedirfan/documentscanner"/>
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="DocumentScanner">
+				<param name="android-package" value="com.mohammedirfan.documentscanner.DocumentScanner" />
+			</feature>
+		</config-file>
 
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="DocumentScanner">
-        <param name="android-package" value="com.mohammedirfan.documentscanner.DocumentScanner" />
-      </feature>
-    </config-file>
+		<source-file src="src/android/com/mohammedirfan/documentscanner/DocumentScanner.java" target-dir="src/com/mohammedirfan/documentscanner"/>
 
-  </platform>
-  
+		<source-file src="src/android/com/scanlibrary/ScanActivity.java" target-dir="src/com/scanlibrary"/>
+		<source-file src="src/android/com/scanlibrary/ScanConstants.java" target-dir="src/com/scanlibrary"/>
+		<source-file src="src/android/com/scanlibrary/IScanner.java" target-dir="src/com/scanlibrary"/>
+
+		<resource-file src="src/android/res/scan_layout.xml" target="res/layout/scan_layout.xml" />
+
+	</platform>
+	
 </plugin>
