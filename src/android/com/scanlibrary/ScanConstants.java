@@ -1,6 +1,7 @@
 package com.scanlibrary;
 
 import android.os.Environment;
+import org.apache.cordova.*;
 
 /**
  * Created by jhansi on 15/03/15.
@@ -18,4 +19,5 @@ public class ScanConstants {
             .getExternalStorageDirectory().getPath() + "/scanSample";
 
     public final static String SELECTED_BITMAP = "selectedBitmap";
+    public static CallbackContext CBC;
 }

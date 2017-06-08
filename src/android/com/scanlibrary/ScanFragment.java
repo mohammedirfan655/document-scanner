@@ -2,6 +2,7 @@ package com.scanlibrary;
 
 import android.app.Activity;
 import android.app.Fragment;
+//import android.support.v4.app.Fragment;
 import android.app.FragmentManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -39,10 +40,12 @@ public class ScanFragment extends Fragment {
     private ProgressDialogFragment progressDialogFragment;
     private IScanner scanner;
     private Bitmap original;
+    public FakeR fakeR;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        fakeR = new FakeR(activity);
         if (!(activity instanceof IScanner)) {
             throw new ClassCastException("Activity must implement IScanner");
         }
@@ -51,7 +54,7 @@ public class ScanFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.scan_fragment_layout, null);
+        view = inflater.inflate(fakeR.getId("layout", "sc_scan_fragment_layout"), container, false);
         init();
         return view;
     }
@@ -61,11 +64,11 @@ public class ScanFragment extends Fragment {
     }
 
     private void init() {
-        sourceImageView = (ImageView) view.findViewById(R.id.sourceImageView);
-        scanButton = (Button) view.findViewById(R.id.scanButton);
+        sourceImageView = (ImageView) view.findViewById(fakeR.getId("id", "sourceImageView"));
+        scanButton = (Button) view.findViewById(fakeR.getId("id", "scanButton"));
         scanButton.setOnClickListener(new ScanButtonClickListener());
-        sourceFrame = (FrameLayout) view.findViewById(R.id.sourceFrame);
-        polygonView = (PolygonView) view.findViewById(R.id.polygonView);
+        sourceFrame = (FrameLayout) view.findViewById(fakeR.getId("id", "sourceFrame"));
+        polygonView = (PolygonView) view.findViewById(fakeR.getId("id", "polygonView"));
         sourceFrame.post(new Runnable() {
             @Override
             public void run() {
@@ -101,7 +104,7 @@ public class ScanFragment extends Fragment {
         Map<Integer, PointF> pointFs = getEdgePoints(tempBitmap);
         polygonView.setPoints(pointFs);
         polygonView.setVisibility(View.VISIBLE);
-        int padding = (int) getResources().getDimension(R.dimen.scanPadding);
+        int padding = (int) getResources().getDimension(fakeR.getId("dimen", "scanPadding"));
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(tempBitmap.getWidth() + 2 * padding, tempBitmap.getHeight() + 2 * padding);
         layoutParams.gravity = Gravity.CENTER;
         polygonView.setLayoutParams(layoutParams);
@@ -125,7 +128,7 @@ public class ScanFragment extends Fragment {
         float y3 = points[6];
         float y4 = points[7];
 
-        List<PointF> pointFs = new ArrayList<>();
+        List<PointF> pointFs = new ArrayList<PointF>();
         pointFs.add(new PointF(x1, y1));
         pointFs.add(new PointF(x2, y2));
         pointFs.add(new PointF(x3, y3));
@@ -134,7 +137,7 @@ public class ScanFragment extends Fragment {
     }
 
     private Map<Integer, PointF> getOutlinePoints(Bitmap tempBitmap) {
-        Map<Integer, PointF> outlinePoints = new HashMap<>();
+        Map<Integer, PointF> outlinePoints = new HashMap<Integer, PointF>();
         outlinePoints.put(0, new PointF(0, 0));
         outlinePoints.put(1, new PointF(tempBitmap.getWidth(), 0));
         outlinePoints.put(2, new PointF(0, tempBitmap.getHeight()));
@@ -163,7 +166,7 @@ public class ScanFragment extends Fragment {
     }
 
     private void showErrorDialog() {
-        SingleButtonDialogFragment fragment = new SingleButtonDialogFragment(R.string.ok, getString(R.string.cantCrop), "Error", true);
+        SingleButtonDialogFragment fragment = new SingleButtonDialogFragment(fakeR.getId("string", "ok"), getString(fakeR.getId("string", "cantCrop")), "Error", true);
         FragmentManager fm = getActivity().getFragmentManager();
         fragment.show(fm, SingleButtonDialogFragment.class.toString());
     }
@@ -208,7 +211,7 @@ public class ScanFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            showProgressDialog(getString(R.string.scanning));
+            showProgressDialog(getString(fakeR.getId("string", "scanning")));
         }
 
         @Override

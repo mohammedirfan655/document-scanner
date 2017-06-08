@@ -32,6 +32,7 @@ public class PolygonView extends FrameLayout {
     private ImageView midPointer34;
     private ImageView midPointer24;
     private PolygonView polygonView;
+    public FakeR fakeR;
 
     public PolygonView(Context context) {
         super(context);
@@ -52,6 +53,7 @@ public class PolygonView extends FrameLayout {
     }
 
     private void init() {
+        fakeR = new FakeR(this.context);
         polygonView = this;
         pointer1 = getImageView(0, 0);
         pointer2 = getImageView(getWidth(), 0);
@@ -87,7 +89,7 @@ public class PolygonView extends FrameLayout {
 
     private void initPaint() {
         paint = new Paint();
-        paint.setColor(getResources().getColor(R.color.blue));
+        paint.setColor(getResources().getColor(fakeR.getId("color", "blue")));
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
     }
@@ -111,7 +113,7 @@ public class PolygonView extends FrameLayout {
             centerPoint.x += pointF.x / size;
             centerPoint.y += pointF.y / size;
         }
-        Map<Integer, PointF> orderedPoints = new HashMap<>();
+        Map<Integer, PointF> orderedPoints = new HashMap<Integer, PointF>();
         for (PointF pointF : points) {
             int index = -1;
             if (pointF.x < centerPoint.x && pointF.y < centerPoint.y) {
@@ -169,7 +171,7 @@ public class PolygonView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         imageView.setLayoutParams(layoutParams);
-        imageView.setImageResource(R.drawable.circle);
+        imageView.setImageResource(fakeR.getId("drawable", "circle"));
         imageView.setX(x);
         imageView.setY(y);
         imageView.setOnTouchListener(new TouchListenerImpl());
@@ -229,9 +231,9 @@ public class PolygonView extends FrameLayout {
                 case MotionEvent.ACTION_UP:
                     int color = 0;
                     if (isValidShape(getPoints())) {
-                        color = getResources().getColor(R.color.blue);
+                        color = getResources().getColor(fakeR.getId("color", "blue"));
                     } else {
-                        color = getResources().getColor(R.color.orange);
+                        color = getResources().getColor(fakeR.getId("color", "orange"));
                     }
                     paint.setColor(color);
                     break;
@@ -277,9 +279,9 @@ public class PolygonView extends FrameLayout {
                 case MotionEvent.ACTION_UP:
                     int color = 0;
                     if (isValidShape(getPoints())) {
-                        color = getResources().getColor(R.color.blue);
+                        color = getResources().getColor(fakeR.getId("color", "blue"));
                     } else {
-                        color = getResources().getColor(R.color.orange);
+                        color = getResources().getColor(fakeR.getId("color", "orange"));
                     }
                     paint.setColor(color);
                     break;

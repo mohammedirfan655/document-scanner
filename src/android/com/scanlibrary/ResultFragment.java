@@ -28,30 +28,37 @@ public class ResultFragment extends Fragment {
     private Button grayModeButton;
     private Button bwButton;
     private Bitmap transformed;
+    public FakeR fakeR;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        fakeR = new FakeR(activity);
+    }
 
     public ResultFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.result_layout, null);
+        view = inflater.inflate(fakeR.getId("layout", "sc_result_layout"), null);
         init();
         return view;
     }
 
     private void init() {
-        scannedImageView = (ImageView) view.findViewById(R.id.scannedImage);
-        originalButton = (Button) view.findViewById(R.id.original);
+        scannedImageView = (ImageView) view.findViewById(fakeR.getId("id", "scannedImage"));
+        originalButton = (Button) view.findViewById(fakeR.getId("id", "original"));
         originalButton.setOnClickListener(new OriginalButtonClickListener());
-        MagicColorButton = (Button) view.findViewById(R.id.magicColor);
+        MagicColorButton = (Button) view.findViewById(fakeR.getId("id", "magicColor"));
         MagicColorButton.setOnClickListener(new MagicColorButtonClickListener());
-        grayModeButton = (Button) view.findViewById(R.id.grayMode);
+        grayModeButton = (Button) view.findViewById(fakeR.getId("id", "grayMode"));
         grayModeButton.setOnClickListener(new GrayButtonClickListener());
-        bwButton = (Button) view.findViewById(R.id.BWMode);
+        bwButton = (Button) view.findViewById(fakeR.getId("id", "BWMode"));
         bwButton.setOnClickListener(new BWButtonClickListener());
         Bitmap bitmap = getBitmap();
         setScannedImage(bitmap);
-        doneButton = (Button) view.findViewById(R.id.doneButton);
+        doneButton = (Button) view.findViewById(fakeR.getId("id", "doneButton"));
         doneButton.setOnClickListener(new DoneButtonClickListener());
     }
 
