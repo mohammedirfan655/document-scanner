@@ -105,7 +105,7 @@
 		</config-file>
 
 		<config-file target="*-Info.plist" parent="UIMainStoryboardFile">
-			<string>Scanner</string>
+			<string>Main</string>
 		</config-file>
 		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
 			<string>Camera module will be used for the scanning part of the application.</string>
@@ -121,10 +121,12 @@
 		<header-file src="src/ios/ViewController.h"/>
 		<source-file src="src/ios/ViewController.m"/>
 
-		<source-file src="src/ios/Scanner.storyboard" target="Scanner.storyboard" />
-		<source-file src="src/ios/capture_button@2x.png" target="Images.xcassets/capture_button@2x.png" />
-		<source-file src="src/ios/focusIndicator.png" target="Images.xcassets/focusIndicator.png" />
-		<source-file src="src/ios/focusIndicator@2x.png" target="Images.xcassets/focusIndicator@2x.png" />
+		<resource-file src="src/ios/Main.storyboard" target="Base.lproj/Main.storyboard" />
+		<resource-file src="src/ios/capture_button@2x.png" target="Images.xcassets/capture_button.imageset/capture_button@2x.png" />
+		<resource-file src="src/ios/Contents.json" target="Images.xcassets/capture_button.imageset/Contents.json" />
+		<resource-file src="src/ios/Contents2.json" target="Images.xcassets/focusIndicator.imageset/Contents.json" />
+		<resource-file src="src/ios/focusIndicator.png" target="Images.xcassets/focusIndicator.imageset/focusIndicator.png" />
+		<resource-file src="src/ios/focusIndicator@2x.png" target="Images.xcassets/focusIndicator.imageset/focusIndicator@2x.png" />
 
 		<!-- <framework src="QuartzCore.framework" /> -->
 	</platform>

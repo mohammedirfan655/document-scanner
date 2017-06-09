@@ -22,10 +22,9 @@
 - (void) process:(CDVInvokedUrlCommand*)command
 {
 
-    [self.viewc viewDidLoad];
-//    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"test"];
+   CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"test"];
 
-//    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
