@@ -42,14 +42,14 @@
 		<source-file src="src/android/com/scanlibrary/ScanActivity.java" target-dir="src/com/scanlibrary"/>
 		<source-file src="src/android/com/scanlibrary/ScanConstants.java" target-dir="src/com/scanlibrary"/>
 		<source-file src="src/android/com/scanlibrary/IScanner.java" target-dir="src/com/scanlibrary"/>
-	    <source-file src="src/android/com/scanlibrary/FakeR.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/PickImageFragment.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/ScanFragment.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/Utils.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/PolygonView.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/ProgressDialogFragment.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/ResultFragment.java" target-dir="src/com/scanlibrary" />
-	    <source-file src="src/android/com/scanlibrary/SingleButtonDialogFragment.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/FakeR.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/PickImageFragment.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/ScanFragment.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/Utils.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/PolygonView.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/ProgressDialogFragment.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/ResultFragment.java" target-dir="src/com/scanlibrary" />
+		<source-file src="src/android/com/scanlibrary/SingleButtonDialogFragment.java" target-dir="src/com/scanlibrary" />
 
 		<resource-file src="src/android/res/drawable/circle.xml" target="res/drawable/circle.xml" />
 		<resource-file src="src/android/res/drawable-mdpi/sc_camera.png" target="res/drawable-mdpi/sc_camera.png" />
@@ -80,20 +80,53 @@
 		<source-file src="src/android/com/scanlibrary/libs/x86/libopencv_java3.so" target-dir="libs/x86/" />
 		<source-file src="src/android/com/scanlibrary/libs/x86/libScanner.so" target-dir="libs/x86/" />
 
-	    <config-file target="AndroidManifest.xml" parent="/manifest/application">
-	        <activity android:label="ScanActivity"
-	        		  android:name="com.scanlibrary.ScanActivity">
-	        </activity>
-	    </config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:label="ScanActivity"
+					  android:name="com.scanlibrary.ScanActivity">
+			</activity>
+		</config-file>
 
 		<config-file target="AndroidManifest.xml" parent="/manifest">
-		    <uses-permission android:name="android.permission.CAMERA" />
-		    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-		    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 		</config-file>
 
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 
+	</platform>
+
+	<!-- iOS -->
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+		  <feature name="DocumentScanner">
+			<param name="ios-package" value="DocumentScanner"/>
+		  </feature>
+		</config-file>
+
+		<config-file target="*-Info.plist" parent="UIMainStoryboardFile">
+			<string>Scanner</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+			<string>Camera module will be used for the scanning part of the application.</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+			<string>Gallery will be accessed for upload documents in the application.</string>
+		</config-file>
+
+		<header-file src="src/ios/DocumentScanner.h"/>
+		<source-file src="src/ios/DocumentScanner.m"/>
+		<header-file src="src/ios/IPDFCameraViewController.h"/>
+		<source-file src="src/ios/IPDFCameraViewController.m"/>
+		<header-file src="src/ios/ViewController.h"/>
+		<source-file src="src/ios/ViewController.m"/>
+
+		<source-file src="src/ios/Scanner.storyboard" target="Scanner.storyboard" />
+		<source-file src="src/ios/capture_button@2x.png" target="Images.xcassets/capture_button@2x.png" />
+		<source-file src="src/ios/focusIndicator.png" target="Images.xcassets/focusIndicator.png" />
+		<source-file src="src/ios/focusIndicator@2x.png" target="Images.xcassets/focusIndicator@2x.png" />
+
+		<!-- <framework src="QuartzCore.framework" /> -->
 	</platform>
 	
 </plugin>

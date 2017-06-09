@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "name": "cordova-plugin-document-scanner",
+  "description": "Plugin to provide a javascript interface to a native document scanner API functionality.",
+  "cordova": {
+    "id": "cordova-plugin-document-scanner",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammedirfan655/document-scanner.git"
+  },
+  "keywords": [
+    "cordova",
+    "ios",
+    "audio",
+    "session",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Mohammed Irfan",
+  "license": "Apache 2.0 License",
+  "bugs": {
+    "url": "https://github.com/mohammedirfan655/document-scanner/issues"
+  },
+  "homepage": "https://github.com/mohammedirfan655/document-scanner#readme"
+}
