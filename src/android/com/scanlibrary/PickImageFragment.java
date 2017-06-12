@@ -57,6 +57,21 @@ public class PickImageFragment extends Fragment {
 		galleryButton.setOnClickListener(new GalleryClickListener());
 		if (isIntentPreferenceSet()) {
 			handleIntentPreference();
+        } else {
+			String response="There was an error during processing your request";
+			ScanConstants.CBC.error(response);
+			cur_activity.finish();
+            getActivity().finish();
+        }
+    }
+
+    private void clearTempImages() {
+        try {
+            File tempFolder = new File(ScanConstants.IMAGE_PATH);
+            for (File f : tempFolder.listFiles())
+                f.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 
@@ -97,7 +112,7 @@ public class PickImageFragment extends Fragment {
 	public void openMediaContent() {
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
-		intent.setType("*/*");
+		intent.setType("image/*");
 		startActivityForResult(intent, ScanConstants.PICKFILE_REQUEST_CODE);
 	}
 
@@ -113,10 +128,10 @@ public class PickImageFragment extends Fragment {
 	}
 
 	private File createImageFile() {
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new
-				Date());
-		File file = new File(ScanConstants.IMAGE_PATH, "IMG_" + timeStamp +
-				".jpg");
+		clearTempImages();
+//		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//		File file = new File(ScanConstants.IMAGE_PATH, "IMG_" + timeStamp + ".jpg");
+		File file = new File(ScanConstants.IMAGE_PATH, "/scanned_image.png");
 		return file;
 	}
 
@@ -137,8 +152,7 @@ public class PickImageFragment extends Fragment {
 						bitmap = getBitmap(data.getData());
 						break;
 				}
-			} catch (Exception e
-					) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {

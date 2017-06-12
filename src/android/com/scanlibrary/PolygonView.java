@@ -89,7 +89,7 @@ public class PolygonView extends FrameLayout {
 
     private void initPaint() {
         paint = new Paint();
-        paint.setColor(getResources().getColor(fakeR.getId("color", "blue")));
+        paint.setColor(getResources().getColor(fakeR.getId("color", "sc_blue")));
         paint.setStrokeWidth(2);
         paint.setAntiAlias(true);
     }
@@ -231,9 +231,9 @@ public class PolygonView extends FrameLayout {
                 case MotionEvent.ACTION_UP:
                     int color = 0;
                     if (isValidShape(getPoints())) {
-                        color = getResources().getColor(fakeR.getId("color", "blue"));
+                        color = getResources().getColor(fakeR.getId("color", "sc_blue"));
                     } else {
-                        color = getResources().getColor(fakeR.getId("color", "orange"));
+                        color = getResources().getColor(fakeR.getId("color", "sc_orange"));
                     }
                     paint.setColor(color);
                     break;
@@ -279,9 +279,9 @@ public class PolygonView extends FrameLayout {
                 case MotionEvent.ACTION_UP:
                     int color = 0;
                     if (isValidShape(getPoints())) {
-                        color = getResources().getColor(fakeR.getId("color", "blue"));
+                        color = getResources().getColor(fakeR.getId("color", "sc_blue"));
                     } else {
-                        color = getResources().getColor(fakeR.getId("color", "orange"));
+                        color = getResources().getColor(fakeR.getId("color", "sc_orange"));
                     }
                     paint.setColor(color);
                     break;

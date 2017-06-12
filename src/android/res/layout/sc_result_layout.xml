@@ -6,49 +6,52 @@
     android:orientation="vertical">
 
 
-    <HorizontalScrollView
+<LinearLayout
         android:id="@+id/topBar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:fillViewport="false">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
 
 
-            <Button
+<Button
                 android:id="@+id/original"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Original" />
+                android:background="@android:color/transparent"
+            android:drawableTop="@drawable/sc_ic_image"
+            android:text="Original"             android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/magicColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Magic color" />
+                android:background="@android:color/transparent"
+            android:drawableTop="@drawable/sc_ic_enhamce_image"
+            android:singleLine="true"
+            android:text="Magic color"             android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/grayMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Gray Mode" />
+                android:background="@android:color/transparent"
+            android:drawableTop="@drawable/sc_ic_gray"
+            android:singleLine="true"
+            android:text="Gray Mode"             android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/BWMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="B and W" />
+                android:background="@android:color/transparent"
+            android:drawableTop="@drawable/sc_ic_black_and_white"
+            android:singleLine="true"
+            android:text="B and W"             android:textColor="@android:color/white" />
         </LinearLayout>
-
-    </HorizontalScrollView>
 
     <Button
         android:id="@+id/doneButton"
@@ -58,7 +61,7 @@
         android:background="@color/bottom_background_color"
         android:orientation="horizontal"
         android:padding="@dimen/bottom_bar_padding"
-        android:text="@string/done"></Button>
+        android:text="Done"/>
 
 
     <FrameLayout

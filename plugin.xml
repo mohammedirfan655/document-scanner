@@ -51,26 +51,25 @@
 	    <source-file src="src/android/com/scanlibrary/ResultFragment.java" target-dir="src/com/scanlibrary" />
 	    <source-file src="src/android/com/scanlibrary/SingleButtonDialogFragment.java" target-dir="src/com/scanlibrary" />
 
+<!-- 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml" /> -->
+
 		<resource-file src="src/android/res/drawable/circle.xml" target="res/drawable/circle.xml" />
 		<resource-file src="src/android/res/drawable-mdpi/sc_camera.png" target="res/drawable-mdpi/sc_camera.png" />
 		<resource-file src="src/android/res/drawable-mdpi/sc_gallery.png" target="res/drawable-mdpi/sc_gallery.png" />
+		<resource-file src="src/android/res/drawable-mdpi/sc_ic_black_and_white.png" target="res/drawable-mdpi/sc_ic_black_and_white.png" />
+		<resource-file src="src/android/res/drawable-mdpi/sc_ic_enhamce_image.png" target="res/drawable-mdpi/sc_ic_enhamce_image.png" />
+		<resource-file src="src/android/res/drawable-mdpi/sc_ic_gray.png" target="res/drawable-mdpi/sc_ic_gray.png" />
+		<resource-file src="src/android/res/drawable-mdpi/sc_ic_image.png" target="res/drawable-mdpi/sc_ic_image.png" />
+
 		<resource-file src="src/android/res/layout/sc_pick_image_fragment.xml" target="res/layout/sc_pick_image_fragment.xml" />
 		<resource-file src="src/android/res/layout/sc_result_layout.xml" target="res/layout/sc_result_layout.xml" />
 		<resource-file src="src/android/res/layout/sc_scan_fragment_layout.xml" target="res/layout/sc_scan_fragment_layout.xml" />
 		<resource-file src="src/android/res/layout/sc_scan_layout.xml" target="res/layout/sc_scan_layout.xml" />
+
 		<resource-file src="src/android/res/values/sc_colors.xml" target="res/values/sc_colors.xml" />
 		<resource-file src="src/android/res/values/sc_dimens.xml" target="res/values/sc_dimens.xml" />
-		<resource-file src="src/android/res/values/sc_strings.xml" target="res/values/sc_strings.xml" />
 
-		<source-file src="src/android/com/scanlibrary/libs/armeabi/libopencv_java3.so" target-dir="src/main/jniLibs/armeabi/" />
-		<source-file src="src/android/com/scanlibrary/libs/armeabi/libScanner.so" target-dir="src/main/jniLibs/armeabi/" />
-		<source-file src="src/android/com/scanlibrary/libs/armeabi-v7a/libopencv_java3.so" target-dir="src/main/jniLibs/armeabi-v7a/" />
-		<source-file src="src/android/com/scanlibrary/libs/armeabi-v7a/libScanner.so" target-dir="src/main/jniLibs/armeabi-v7a/" />
-		<source-file src="src/android/com/scanlibrary/libs/mips/libopencv_java3.so" target-dir="src/main/jniLibs/mips/" />
-		<source-file src="src/android/com/scanlibrary/libs/mips/libScanner.so" target-dir="src/main/jniLibs/mips/" />
-		<source-file src="src/android/com/scanlibrary/libs/x86/libopencv_java3.so" target-dir="src/main/jniLibs/x86/" />
-		<source-file src="src/android/com/scanlibrary/libs/x86/libScanner.so" target-dir="src/main/jniLibs/x86/" />
-
+		<source-file src="src/android/com/scanlibrary/libs/opencv.jar" target-dir="libs/"/>
 		<source-file src="src/android/com/scanlibrary/libs/armeabi/libopencv_java3.so" target-dir="libs/armeabi/" />
 		<source-file src="src/android/com/scanlibrary/libs/armeabi/libScanner.so" target-dir="libs/armeabi/" />
 		<source-file src="src/android/com/scanlibrary/libs/armeabi-v7a/libopencv_java3.so" target-dir="libs/armeabi-v7a/" />
