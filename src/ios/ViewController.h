@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Cordova/CDV.h>
+#import <Cordova/CDVPlugin.h>
+#import <Cordova/CDVCommandDelegate.h>
 
-@interface ViewController : UIViewController < UIWebViewDelegate , UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController
+
+
+-(void)test;
+//-(void)cordovaResponse:(CDVInvokedUrlCommand*)command;
+//-(void)cordovaResponse;
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
+
+@property (copy) void (^didFinishBlock)(NSString* output);
 
 @end
 

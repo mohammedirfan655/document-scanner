@@ -7,18 +7,17 @@
 //
 
 #import "ViewController.h"
-
 #import "IPDFCameraViewController.h"
-
-NSURL *request_url;
+#import <Cordova/CDV.h>
+#import <Cordova/CDVPlugin.h>
+#import <Cordova/CDVInvokedUrlCommand.h>
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet IPDFCameraViewController *cameraViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *focusIndicator;
-@property (weak, nonatomic) UIApplication *fetchURL;
-
+//@property (weak, nonatomic) CDVInvokedUrlCommand *cordovaResponse;
 
 - (IBAction)focusGesture:(id)sender;
 
@@ -28,31 +27,38 @@ NSURL *request_url;
 
 @implementation ViewController
 
+@synthesize commandDelegate;
+NSString *image_url;
 
 #pragma mark -
 #pragma mark View Lifecycle
 
-- (void)fetchURL:(UIApplication *)fetchURL handleOpenURL:(NSURL *)url {
-    // Do something with the url here
-    request_url=url;
+- (void) doneButtonClicked:(NSString *) resp
+{
+    if (self.didFinishBlock != nil) {
+        self.didFinishBlock(resp);
+    }
 }
-
 
 - (void)viewDidLoad
 {
 
     [super viewDidLoad];
 
-    _fetchURL;
     NSLog(@"MI:::Application started");
     
-    NSLog(@"MI:::URL recieved %@",request_url);
-    
-    
+//    [self test];
+//    [self cordovaResponse:(CDVInvokedUrlCommand*)@"sd"];
     
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:YES];
     [self updateTitleLabel];
+
+}
+
+- (void)test
+{
+    NSLog(@"MI:::test called");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -168,6 +174,7 @@ NSURL *request_url;
 /*        NSError *error;
         BOOL status = [@"Write me to file" writeToFile:imageFilePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
         NSLog(@"Status=",status);*/
+        image_url=imageFilePath;
         
         UITapGestureRecognizer *dismissTap = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(dismissPreview:)];
         [captureImageView addGestureRecognizer:dismissTap];
@@ -188,22 +195,13 @@ NSURL *request_url;
     completion:^(BOOL finished)
     {
         NSLog(@"MI:::Tapped");
-        NSString *customURL = @"d2a://";
-        
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:customURL]])
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:customURL]];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Launch Error"
-                                                            message:[NSString stringWithFormat:@"D2A Application not found, please install from the App Store"]
-                                                           delegate:self cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-        
         [dismissTap.view removeFromSuperview];
+
+        NSString *resp;
+        resp=[NSString stringWithFormat:@"{'status':'OK','path':'%@'}",image_url];
+
+        [self doneButtonClicked:resp];
+        [self dismissViewControllerAnimated:YES completion:Nil];
     }];
 }
 

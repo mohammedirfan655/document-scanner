@@ -100,10 +100,13 @@
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
 		  <feature name="DocumentScanner">
-			<param name="ios-package" value="DocumentScanner"/>
+			<param name="ios-package" value="DocumentScanner"  onload="true" />
 		  </feature>
 		</config-file>
 
+		<config-file target="*-Info.plist" parent="UILaunchStoryboardName">
+			<string>LaunchScreen</string>
+		</config-file>
 		<config-file target="*-Info.plist" parent="UIMainStoryboardFile">
 			<string>Main</string>
 		</config-file>

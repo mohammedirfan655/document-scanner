@@ -1,44 +1,40 @@
 #import "DocumentScanner.h"
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import <Cordova/CDVViewController.h>
 
 
 @interface DocumentScanner()
 
-    @property (nonatomic, retain) ViewController *vc;
 @end
 
 @implementation DocumentScanner
 
 NSString *_routeChangedCallbackId;
-@synthesize viewc;
-
 
 - (void) pluginInitialize {
-    NSLog(@"DocumentScanner:pluginInitialize");
-
+    NSLog(@"DocumentScanner:pluginInitialized");
     _routeChangedCallbackId = nil;
 }
 
 - (void) process:(CDVInvokedUrlCommand*)command
 {
+    NSLog(@"DocumentScanner:process");
     
-    
-//    ViewController *listingVC = [[ViewController alloc] init];
-//    [(UINavigationController *)self.window.rootViewController pushViewController:listingVC animated:YES];
-//    [(UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController popViewControllerAnimated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController * docViewController = [storyboard   instantiateViewControllerWithIdentifier:@"iController"] ;
 
-   
+    DocumentScanner * __weak weakSelf = self;
     
-//    ViewController *myViewController = [storyboard instantiateViewControllerWithIdentifier:@"iController"];
-//    [ViewController loadCustomData:myCustomData];
-//    [ViewController viewDidLoad:myViewController animated:YES completion:nil];
+    docViewController.didFinishBlock = ^(NSString *output){
+        NSLog(@"DocumentScanner:didFinishBlock");
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:output];
+        [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    };
+    
+    [self.viewController presentViewController:docViewController animated:YES completion:nil];
 
-    
     
 //   CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"test"];
-
 //   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
