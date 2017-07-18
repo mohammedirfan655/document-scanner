@@ -156,10 +156,11 @@ public class PickImageFragment extends Fragment {
 				e.printStackTrace();
 			}
 		} else {
-			Log.i("DOC_LOG","User clicked cancel");
+			Log.i("DOC_LOG","User clicked cancel from PickImageFragment");
 			String response="Scanning process cancelled by user";
 			ScanConstants.CBC.error(response);
 			cur_activity.finish();
+			getActivity().finish();
 		}
 		if (bitmap != null) {
 			postImagePick(bitmap);

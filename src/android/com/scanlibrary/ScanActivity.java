@@ -25,12 +25,14 @@ public class ScanActivity extends Activity implements IScanner, ComponentCallbac
 
 	public FakeR fakeR;
 	public static String TAG="DOC_LOG";
+	public static Activity cur_activity;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		fakeR = new FakeR(this);
 		setContentView(fakeR.getId("layout", "sc_scan_layout"));
 		Log.i(TAG,"ScanActivity start");
+		cur_activity=this;
 		init();
 	}
 
@@ -163,4 +165,14 @@ public class ScanActivity extends Activity implements IScanner, ComponentCallbac
 		System.loadLibrary("opencv_java3");
 		System.loadLibrary("Scanner");
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Log.i(TAG,"User clicked cancel from ScanActivity");
+		String response="Scanning process cancelled by user";
+		ScanConstants.CBC.error(response);
+		cur_activity.finish();
+	}
+
 }
